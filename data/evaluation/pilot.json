@@ -1,0 +1,27 @@
+[
+  {
+    "question_id": "cofide-001",
+    "question": "¿Qué departamento realiza las acciones de respaldo de información?",
+    "category": "responsables_operativos",
+    "relevant": [{"report_number": "007-2024-OCI/0014-SVC", "page": 4}]
+  },
+  {
+    "question_id": "cofide-002",
+    "question": "¿Qué periodo fue evaluado en la visita de control?",
+    "category": "alcance",
+    "relevant": [{"report_number": "007-2024-OCI/0014-SVC", "page": 3}]
+  },
+  {
+    "question_id": "cofide-003",
+    "question": "¿Cuántos expedientes de la muestra tenían documentación incompleta?",
+    "category": "documentacion_digital",
+    "relevant": [{"report_number": "007-2024-OCI/0014-SVC", "page": 6}]
+  },
+  {
+    "question_id": "cofide-004",
+    "question": "¿Qué algoritmo de cifrado utiliza COFIDE para sus respaldos?",
+    "category": "sin_evidencia",
+    "relevant": [],
+    "unanswerable": true
+  }
+]

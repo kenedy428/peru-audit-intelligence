@@ -1,0 +1,33 @@
+name: checks
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -c constraints.txt -e '.[dev,ui]'
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pip check
+      - run: python -m scripts.check_release
+      - run: pytest -q -m 'not postgres'
+      - name: Prepare temporary CI credentials
+        shell: python
+        run: |
+          import secrets
+          from pathlib import Path
+          template = Path('.env.example').read_text(encoding='utf-8')
+          Path('.env').write_text(template.replace(
+              'replace_with_random_urlsafe_password', secrets.token_hex(32)
+          ), encoding='utf-8')
+      - run: docker compose config --quiet
+      - run: docker compose up -d --wait postgres
+      - run: python -m scripts.check_postgres --integration
+      - run: docker build -t peru-audit:test .
+      - run: docker compose up -d --build backend frontend
+      - run: python -m scripts.smoke_app
+      - if: always()
+        run: docker compose down
