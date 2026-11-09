@@ -3,7 +3,9 @@
 Búsqueda trazable en informes públicos de servicios de control del Perú, con enfoque inicial
 en TI y seguridad de información. Proyecto independiente de portafolio y aprendizaje.
 
-**Versión documental 0.1.0 en preparación:** exploración y búsqueda por palabras con fuentes
+![Checks](https://github.com/kenedy428/peru-audit-intelligence/actions/workflows/ci.yml/badge.svg)
+
+**MVP documental 0.1.0:** exploración y búsqueda por palabras con fuentes
 verificables. No es una herramienta oficial ni determina responsabilidades. La demo contiene
 un informe; búsqueda semántica y RAG son experimentales y no están validados con modelos reales.
 
@@ -82,6 +84,8 @@ No utiliza el puerto host 5432 ni los datos/credenciales de otra instalación.
 Requiere Docker Desktop/Compose instalado y en ejecución. Antes del primer arranque,
 copia `.env.example` a `.env` si no existe y reemplaza POSTGRES_PASSWORD por una contraseña
 aleatoria exclusiva con caracteres seguros para URL (por ejemplo, hexadecimal).
+Si antes elegiste SQLite en la misma terminal, elimina esa sobreescritura con
+`Remove-Item Env:DATABASE_URL -ErrorAction SilentlyContinue` antes de comprobar PostgreSQL.
 DATABASE_URL se expande desde esas variables; nunca imprimas `docker compose config` sin `--quiet`
 porque mostraría las credenciales resueltas. No subas `.env` a Git.
 
@@ -153,7 +157,8 @@ limpio de la página. El año corresponde a emisión, no a publicación. Los sco
 ```
 
 La muestra actual contiene **1 informe, 14 páginas y 2 páginas alertadas**; la ampliación a
-5–10 informes está bloqueada por falta de resolución DNS de las fuentes durante esta revisión.
+5–10 informes sigue pendiente. Tras los fallos DNS de la fase anterior, la descarga de la
+semilla desde Docker volvió a funcionar durante la validación del MVP.
 El modo de caché exige hash y fecha original verificables; sin archivo local necesita conexión.
 `--extract-only` conserva páginas y errores sin crear chunks ni embeddings. Las alertas distinguen
 falta/escasez de texto, errores del parser y caracteres sospechosos; requieren interpretación humana.
@@ -199,8 +204,11 @@ no recuperado esté ausente del PDF.
 ```
 
 Las pruebas usan documentos sintéticos. La integración real con pgvector requiere
-TEST_DATABASE_URL de una base desechable; está configurada en GitHub Actions. CI y construcción
-Docker se ejecutarán al publicar el repositorio. Ningún test descarga modelos ni llama APIs pagadas.
+TEST_DATABASE_URL de una base desechable; está configurada en GitHub Actions. Pruebas, integración
+PostgreSQL, construcción Docker y arranque completo pasaron en
+[GitHub Actions](https://github.com/kenedy428/peru-audit-intelligence/actions/runs/42550762384).
+Ningún test descarga modelos ni llama APIs pagadas. CI comprueba el contrato de búsqueda sin
+corpus oficial; la demostración local con el informe real se documenta por separado.
 
 La evaluación piloto tiene tres preguntas respondibles y una sin evidencia. Es una prueba de
 desarrollo, insuficiente para declarar calidad general. Ver [evaluación](docs/EVALUATION.md).

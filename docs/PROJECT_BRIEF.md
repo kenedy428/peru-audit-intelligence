@@ -9,8 +9,8 @@ trazabilidad, evaluación y ejecución reproducible.
 - Enfoque inicial: TI, seguridad de información y respaldos digitales.
 - Sin gasto inicial: proveedores locales; no se integran APIs de pago.
 - Objetivo de corpus: 50–200 informes; primera validación: 5–10 informes.
-- Muestra actual: un informe COFIDE registrado en PostgreSQL con extracción por página y calidad.
-  La ampliación a 5–10 está pendiente de conectividad con las fuentes oficiales.
+- Muestra actual: un informe COFIDE en PostgreSQL con 14 páginas y 29 fragmentos consultables.
+  La descarga de la semilla volvió a funcionar desde Docker; ampliar a 5–10 sigue pendiente.
 - FastAPI, Streamlit y PostgreSQL con pgvector como arquitectura objetivo.
 - PostgreSQL 18 + pgvector exclusivamente en Docker Compose, host 5433; no utilizar ni
   modificar PostgreSQL nativo del usuario en 5432. Arranque aprobado y realizado el 8/11/2026;

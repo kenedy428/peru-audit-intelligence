@@ -29,4 +29,3 @@ SHA-256: `19c4c47fd47d27f8e0853e586dda483b9f211bb4e9102d776ac1bf94a9459210`.
 ![Búsqueda por palabras en la aplicación Docker](images/documentary-search.jpg)
 
 ![Procedencia del resultado](images/documentary-traceability.jpg)
-
